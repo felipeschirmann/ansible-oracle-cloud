@@ -17,20 +17,20 @@ ansible-playbook dev.yml db.yml -i inventory
 
 create file all.yml in inventory folder
 
----
-all:
-  hosts:
-    dev:
-      hosts: 
-        <ip>
-    db:
-      hosts:
-        <ip>
+``---
+``all:
+``  hosts:
+``    dev:
+``      hosts: 
+``        <ip>
+``    db:
+``      hosts:
+``        <ip>
 
 create file main.yml in vars folder
 
-user: <user>
-dev_ip: <ip>
-db_ip: <ip>
+``user: <user>
+``dev_ip: <ip>
+``db_ip: <ip>
 
 create files felipeschirmann.dev.br.key and felipeschirmann.dev.br.pem in folder templates/nginx/ssl with public and private keys 
