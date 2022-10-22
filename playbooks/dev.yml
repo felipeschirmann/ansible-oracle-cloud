@@ -1,0 +1,58 @@
+---
+- name: Configure server Deployment
+  hosts: dev
+
+  user: opc
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: What is my inventory_hostname
+      debug: var={{inventory_hostname}}
+        
+    - name: What is my ansible_hostname
+      debug: var={{ansible_hostname}}
+
+    - name: Creat app dir
+      file:
+        path: /opt/nginx/nginx
+        state: directory
+        owner: opc
+        group: opc
+
+    - name: Creat app dir
+      file:
+        path: /opt/nginx/ssl
+        state: directory
+        owner: opc
+        group: opc
+
+    - name: Copy docker-compose
+      template:
+        src: docker-compose.yml
+        dest: /opt/nginx/docker-compose.yml
+
+    - name: Copy nginx.conf
+      template:
+        src: nginx/nginx/nginx.conf
+        dest: /opt/nginx/nginx/nginx.conf
+
+    # - name: Copy certificate cloudflare
+    #   template:
+    #     src: nginx/ssl/cloudflare.crt
+    #     dest: /opt/nginx/ssl/cloudflare.crt
+
+    - name: Copy private key
+      template:
+        src: nginx/ssl/felipeschirmann.dev.br.key
+        dest: /opt/nginx/ssl/felipeschirmann.dev.br.key
+
+    - name: Copy public key
+      template:
+        src: nginx/ssl/felipeschirmann.dev.br.pem
+        dest: /opt/nginx/ssl/felipeschirmann.dev.br.pem
+
+  roles:
+    - configuration-default-so

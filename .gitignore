@@ -1,0 +1,5 @@
+playbooks/vars
+playbooks/inventory
+playbooks/templates/nginx/ssl
+
+.DS_Store

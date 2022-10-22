@@ -1,0 +1,19 @@
+---
+- name: Configure server Database
+  hosts: db
+
+  user: opc
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+  - name: What is my inventory_hostname
+    debug: var={{inventory_hostname}}
+      
+  - name: What is my ansible_hostname
+    debug: var={{ansible_hostname}}
+
+  roles:
+    - configuration-default-so
