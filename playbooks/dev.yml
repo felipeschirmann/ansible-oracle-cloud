@@ -3,7 +3,7 @@
   hosts: dev
 
   user: opc
-  become: yes
+  become: true
 
   vars_files:
     - vars/main.yml
@@ -39,10 +39,10 @@
         src: nginx/nginx/nginx.conf
         dest: /opt/nginx/nginx/nginx.conf
 
-    # - name: Copy certificate cloudflare
-    #   template:
-    #     src: nginx/ssl/cloudflare.crt
-    #     dest: /opt/nginx/ssl/cloudflare.crt
+    - name: Copy certificate cloudflare
+      template:
+        src: nginx/ssl/cloudflare.crt
+        dest: /opt/nginx/ssl/cloudflare.crt
 
     - name: Copy private key
       template:
@@ -56,3 +56,5 @@
 
   roles:
     - configuration-default-so
+    
+#https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/#4-required-for-some-add-cloudflare-origin-ca-root-certificates
