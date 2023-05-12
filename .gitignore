@@ -1,5 +1,7 @@
-playbooks/vars
-playbooks/inventory
-playbooks/templates/nginx/ssl
+playbooks/vars/main.yml
+playbooks/inventory/all.yml
+playbooks/templates/nginx/ssl/felipeschirmann.dev.br.key
+playbooks/templates/nginx/ssl/felipeschirmann.dev.br.pem
+playbooks/templates/nginx/ssl/cloudflare.crt
 
 .DS_Store

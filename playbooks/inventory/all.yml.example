@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    dev:
+      hosts: 
+        [ip]
+    db:
+      hosts:
+        [ip]
