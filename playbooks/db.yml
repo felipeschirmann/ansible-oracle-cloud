@@ -15,5 +15,17 @@
   - name: What is my ansible_hostname
     debug: var={{ansible_hostname}}
 
+  - name: Creat app dir
+    file:
+      path: /opt/postgres
+      state: directory
+      owner: opc
+      group: opc
+
+  - name: Copy docker-compose
+    template:
+      src: postgres/docker-compose.yml
+      dest: /opt/postgres/docker-compose.yml
+
   roles:
     - configuration-default-so

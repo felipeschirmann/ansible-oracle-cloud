@@ -19,20 +19,35 @@ services:
     depends_on:
       - reverseproxy
     image: "felipeschirmann/bds06:latest"
+    environment:
+      APP_PROFILE: prod
+      BDS06_DATABASE_URL: jdbc:postgresql://bd.bds06.felipeschirmann.dev.br:5050/bds06
+      BDS06_DATABASE_USERNAME: ${BDS06_DATABASE_USERNAME}
+      BDS06_DATABASE_PASSWORD: ${BDS06_DATABASE_PASSWORD}
     ports:
       - 8084:8080
     restart: always
   ds-vendas-docker:
     depends_on:
       - reverseproxy
-    image: "felipeschirmann/ds-vendas-docker:latest"
+    image: "felipeschirmann/ds-vendas:latest"
+    environment:
+      APP_PROFILE: prod
+      DSVENDAS_DATABASE_URL: jdbc:postgresql://bd.dsvendas.felipeschirmann.dev.br:5052/dsvendas
+      DSVENDAS_DATABASE_USERNAME: ${DSVENDAS_DATABASE_USERNAME}
+      DSVENDAS_DATABASE_PASSWORD: ${DSVENDAS_DATABASE_PASSWORD}
     ports:
       - 8082:8080
     restart: always
   ds-movie-docker:
     depends_on:
       - reverseproxy
-    image: "felipeschirmann/ds-movie-docker:latest"
+    image: "felipeschirmann/ds-movie:latest"
+    environment:
+      APP_PROFILE: prod
+      DSMOVIE_DATABASE_URL: jdbc:postgresql://bd.dsmovie.felipeschirmann.dev.br:5054/dsmovie
+      DSMOVIE_DATABASE_USERNAME: ${DSMOVIE_DATABASE_USERNAME}
+      DSMOVIE_DATABASE_PASSWORD: ${DSMOVIE_DATABASE_PASSWORD}
     ports:
       - 8080:8080
     restart: always

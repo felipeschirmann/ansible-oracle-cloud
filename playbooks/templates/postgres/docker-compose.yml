@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  bds06:
+    container_name: bds06
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: bds06
+      BDS06_DATABASE_USERNAME: ${BDS06_DATABASE_USERNAME}
+      BDS06_DATABASE_PASSWORD: ${BDS06_DATABASE_PASSWORD}
+    ports:
+      - "5050:5432"
+    volumes:
+      - ./database/bds06-postgres-data:/var/lib/postgresql/data
+
+  ds-vendas:
+    container_name: ds-vendas
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dsvendas
+      DSVENDAS_DATABASE_USERNAME: ${DSVENDAS_DATABASE_USERNAME}
+      DSVENDAS_DATABASE_PASSWORD: ${DSVENDAS_DATABASE_PASSWORD}
+    ports:
+      - "5052:5432"
+    volumes:
+      - ./database/ds-vendas-postgres-data:/var/lib/postgresql/data
+
+  ds-movie:
+    container_name: ds-movie
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dsmovie
+      DSMOVIE_DATABASE_USERNAME: ${DSMOVIE_DATABASE_USERNAME}
+      DSMOVIE_DATABASE_PASSWORD: ${DSMOVIE_DATABASE_PASSWORD}
+    ports:
+      - "5054:5432"
+    volumes:
+      - ./database/ds-movie-postgres-data:/var/lib/postgresql/data
